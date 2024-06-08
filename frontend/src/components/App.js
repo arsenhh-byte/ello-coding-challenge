@@ -1,128 +1,46 @@
 import React, { useState } from 'react';
-import { Container, TextField, List, ListItem, ListItemText, IconButton, Paper } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-import { useQuery, gql } from '@apollo/client';
-import AddIcon from '@material-ui/icons/Add';
-import image1 from '../assets/image1.png';
-import image2 from '../assets/image2.png';
-import image3 from '../assets/image3.png';
-import image4 from '../assets/image4.png';
-import image5 from '../assets/image5.png';
-import image6 from '../assets/image6.png';
-import image7 from '../assets/image7.png';
-import image8 from '../assets/image8.png';
-import image9 from '../assets/image9.png';
+import { Container, Typography } from '@mui/material';
+import SearchBar from '../components/SearchBar';
+import SearchResult from '../components/SearchResult';
+import ReadingList from '../components/ReadingList';
 import './App.css';
 
-const GET_BOOKS = gql`
-  query GetBooks($title: String!) {
-    books(title: $title) {
-      id
-      title
-      author
-    }
-  }
-`;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: theme.spacing(4),
-    color: '#335C6E',
-  },
-  search: {
-    marginBottom: theme.spacing(2),
-  },
-  bookList: {
-    position: 'absolute',
-    zIndex: 1,
-    backgroundColor: '#FFFFFF',
-    boxShadow: theme.shadows[5],
-    maxHeight: 300,
-    overflow: 'auto',
-    width: '100%',
-  },
-  bookItem: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  bookCover: {
-    width: 50,
-    height: 50,
-    marginRight: theme.spacing(2),
-  },
-  gridContainer: {
-    marginTop: theme.spacing(4),
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
-  gridItem: {
-    width: '30%',
-    paddingBottom: '20%',
-    position: 'relative',
-    margin: '10px',
-  },
-  gridImage: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  },
-}));
-
-function App() {
-  const classes = useStyles();
-  const [search, setSearch] = useState('');
+const App = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [books, setBooks] = useState([
+    { id: 1, title: 'Book 1', author: 'Author 1' },
+    { id: 2, title: 'Book 2', author: 'Author 2' },
+    { id: 3, title: 'Book 3', author: 'Author 3' },
+  ]);
   const [readingList, setReadingList] = useState([]);
-  const { data } = useQuery(GET_BOOKS, {
-    variables: { title: search },
-    skip: !search,
-  });
 
-  const addToReadingList = (book) => {
-    setReadingList([...readingList, book]);
+  const addBook = (book) => {
+    if (!readingList.find((b) => b.id === book.id)) {
+      setReadingList([...readingList, book]);
+    }
   };
 
-  const bookImages = [image1, image2, image3, image4, image5, image6, image7, image8, image9];
+  const removeBook = (id) => {
+    setReadingList(readingList.filter((book) => book.id !== id));
+  };
+
+  const filteredBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
-    <Container className={classes.root}>
-      <div className="searchContainer">
-        <TextField
-          label="Book"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          fullWidth
-          className={classes.search}
-        />
-        {data && data.books.length > 0 && (
-          <Paper className="searchResults">
-            <List>
-              {data.books.map((book, index) => (
-                <ListItem key={book.id} className="searchResultItem" onClick={() => addToReadingList(book)}>
-                  <img src={bookImages[index % bookImages.length]} alt="Book Cover" />
-                  <ListItemText primary={book.title} secondary={book.author} />
-                  <IconButton>
-                    <AddIcon />
-                  </IconButton>
-                </ListItem>
-              ))}
-            </List>
-          </Paper>
-        )}
-      </div>
-      <div className="gridContainer">
-        {readingList.map((book, index) => (
-          <div className="gridItem" key={book.id}>
-            <img src={bookImages[index % bookImages.length]} alt="Book Cover" className="gridImage" />
-          </div>
-        ))}
-      </div>
+    <Container>
+      <Typography variant="h4" gutterBottom>
+        Book Assignment
+      </Typography>
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <SearchResult books={filteredBooks} addBook={addBook} />
+      <Typography variant="h5" gutterBottom>
+        Reading List
+      </Typography>
+      <ReadingList readingList={readingList} removeBook={removeBook} />
     </Container>
   );
-}
+};
 
 export default App;
