@@ -1,64 +1,161 @@
-/* General styles for the app */
+
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .App {
-    text-align: center;
-    margin: 20px;
-  }
-  
-  .searchContainer {
-    position: relative;
-  }
-  
-  .searchResults {
-    position: absolute;
-    width: 100%;
-    z-index: 1000;
-    background: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    max-height: 200px;
-    overflow-y: auto;
-  }
-  
-  .searchResultItem {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .searchResultItem img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  .gridContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .gridItem {
-    position: relative;
-    width: 30%;
-    padding-bottom: 20%;
-    margin: 10px;
-  }
-  
-  .gridItem img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
+  font-family: 'Mulish', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #FAFAFA;
+}
+
+.container {
+  padding: 20px;
+}
+
+.searchContainer {
+  margin-bottom: 20px;
+}
+
+.searchResults {
+  position: relative;
+  z-index: 1;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  width: 100%;
+  border: 1px solid #5ACCCC;
+}
+
+.searchResultItem {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #CFCFCF;
+}
+
+.searchResultAvatar {
+  margin-right: 16px;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.image-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.grid-item {
+  text-align: center;
+  background-color: #FFFFFF;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid-item:hover {
+  transform: scale(1.05);
+}
+
+.grid-item img {
+  margin-bottom: 10px;
+}
+
+.grid-item h6, .grid-item p {
+  margin: 0;
+}
+
+.grid-item h6 {
+  color: #335C6E;
+}
+
+.grid-item p {
+  color: #5ACCCC;
+}
+
+.searchResults .MuiListItemText-primary {
+  color: #335C6E;
+}
+
+.searchResults .MuiListItemText-secondary {
+  color: #FABD33;
+}
+
+.readingListItem {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #CFCFCF;
+}
+
+.readingListAvatar {
+  margin-right: 16px;
+}
+
+.MuiButtonBase-root {
+  color: #FFFFFF;
+  background-color: #335C6E;
+  border-radius: 4px;
+  padding: 6px 12px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.MuiButtonBase-root:hover {
+  background-color: #5ACCCC;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.MuiTypography-root {
+  color: #335C6E;
+}
+
+.MuiContainer-root {
+  background-color: #FAFAFA;
+}
+
+.MuiInputBase-root {
+  background-color: #FFFFFF;
+  border: 1px solid #CFCFCF;
+  border-radius: 4px;
+}
+
+.MuiInputBase-root:hover {
+  border-color: #5ACCCC;
+}
+
+.MuiInputBase-input {
+  color: #335C6E;
+}
+
+.addButton {
+  background: linear-gradient(45deg, #5ACCCC 30%, #335C6E 90%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 5px 2px rgba(90, 204, 204, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.addButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 10px 4px rgba(90, 204, 204, 0.3);
+}

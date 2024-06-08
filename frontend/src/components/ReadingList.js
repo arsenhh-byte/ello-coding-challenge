@@ -1,13 +1,17 @@
 import React from 'react';
-import { List, ListItem, Button } from '@mui/material';
-import BookItem from './BookItem';
+import { List, ListItem, ListItemText, IconButton, Avatar } from '@mui/material';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 const ReadingList = ({ readingList, removeBook }) => {
   return (
     <List>
       {readingList.map((book) => (
-        <ListItem key={book.id}>
-          <BookItem book={book} actionButton={<Button onClick={() => removeBook(book.id)}>Remove</Button>} />
+        <ListItem key={book.id} alignItems="flex-start" className="readingListItem">
+          <Avatar src={book.image} variant="square" className="readingListAvatar" />
+          <ListItemText primary={book.title} secondary={book.author} />
+          <IconButton onClick={() => removeBook(book.id)}>
+            <RemoveIcon />
+          </IconButton>
         </ListItem>
       ))}
     </List>
