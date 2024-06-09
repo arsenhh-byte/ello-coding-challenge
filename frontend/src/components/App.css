@@ -1,4 +1,4 @@
-
+/* App.css */
 body {
   font-family: 'Mulish', sans-serif;
   margin: 0;
@@ -158,4 +158,5 @@ body {
 .addButton:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 10px 4px rgba(90, 204, 204, 0.3);
+  
 }
