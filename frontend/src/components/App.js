@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, IconButton, Box } from '@mui/material';
+import { Container, Typography, IconButton, Grid } from '@mui/material';
 import SearchBar from '../components/SearchBar';
 import SearchResult from '../components/SearchResult';
 import ReadingList from '../components/ReadingList';
@@ -31,11 +31,7 @@ const App = () => {
           }),
         });
         const result = await response.json();
-        const booksWithLocalImages = result.data.books.map((book, index) => ({
-          ...book,
-          coverPhotoURL: `/assets/image${index + 1}.png`,
-        }));
-        setBooks(booksWithLocalImages);
+        setBooks(result.data.books);
       } catch (error) {
         console.error('Error fetching books:', error);
       }
@@ -61,7 +57,11 @@ const App = () => {
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
-        Book Assignment
+        Teacher's Book Assignment Tool
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        Welcome to your book assignment tool. This tool is meant to help you figure out which book would be the best assignment for your students. 
+        ENJOY :)
       </Typography>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       {searchQuery && (
@@ -74,20 +74,20 @@ const App = () => {
       </Typography>
       <ReadingList readingList={readingList} removeBook={removeBook} />
       <Typography variant="h5" gutterBottom>
-        Book Grid
+        All Books
       </Typography>
-      <div className="image-grid">
+      <Grid container spacing={3} className="image-grid">
         {books.map((book, index) => (
-          <Box key={index} className="grid-item">
+          <Grid item xs={12} sm={6} md={4} lg={3} key={index} className="grid-item">
             <img src={book.coverPhotoURL} alt={book.title} />
             <Typography variant="body1">{book.title}</Typography>
             <Typography variant="body2">{book.author}</Typography>
             <IconButton onClick={() => addBook(book)} className="addButton">
               <AddIcon />
             </IconButton>
-          </Box>
+          </Grid>
         ))}
-      </div>
+      </Grid>
     </Container>
   );
 };
