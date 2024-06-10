@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch('https://ello-coding-challenge-af277c15b5ec.herokuapp.com', {
+        const response = await fetch('https://ello-coding-challenge-4c2fefa3a23b.herokuapp.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
