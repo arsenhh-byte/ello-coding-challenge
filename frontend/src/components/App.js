@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch('http://localhost:4000/', {
+        const response = await fetch('https://ello-coding-challenge-af277c15b5ec.herokuapp.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -60,8 +60,7 @@ const App = () => {
         Teacher's Book Assignment Tool
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Welcome to your book assignment tool. This tool is meant to help you figure out which book would be the best assignment for your students. 
-        ENJOY :)
+        We give this to certain schools for free to allow teachers to share our books with children. You are building part of the teacher-facing UI for this product, namely the book assignment view, where teachers can assign books to students.
       </Typography>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       {searchQuery && (
@@ -74,7 +73,7 @@ const App = () => {
       </Typography>
       <ReadingList readingList={readingList} removeBook={removeBook} />
       <Typography variant="h5" gutterBottom>
-        All Books
+        Book Grid
       </Typography>
       <Grid container spacing={3} className="image-grid">
         {books.map((book, index) => (
