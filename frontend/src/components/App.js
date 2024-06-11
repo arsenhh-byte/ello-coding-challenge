@@ -7,11 +7,15 @@ import AddIcon from '@mui/icons-material/Add';
 import './App.css';
 
 const App = () => {
+  // State to store the search query entered by the user
   const [searchQuery, setSearchQuery] = useState('');
+  // State to store the list of books fetched from the server
   const [books, setBooks] = useState([]);
+  // State to store the user's reading list
   const [readingList, setReadingList] = useState([]);
 
   useEffect(() => {
+    // Fetch books from the server when the component mounts
     const fetchBooks = async () => {
       try {
         const response = await fetch('http://localhost:4000/', {
@@ -31,7 +35,12 @@ const App = () => {
           }),
         });
         const result = await response.json();
-        setBooks(result.data.books);
+        // Prepend the server URL to the coverPhotoURL
+        const booksWithFullURL = result.data.books.map(book => ({
+          ...book,
+          coverPhotoURL: `http://localhost:4000/assets/${book.coverPhotoURL}`
+        }));
+        setBooks(booksWithFullURL);
       } catch (error) {
         console.error('Error fetching books:', error);
       }
@@ -40,16 +49,20 @@ const App = () => {
     fetchBooks();
   }, []);
 
+  // Function to add a book to the reading list
   const addBook = (book) => {
     if (!readingList.find((b) => b.title === book.title)) {
+      // Only add the book if it's not already in the reading list
       setReadingList([...readingList, book]);
     }
   };
 
+  // Function to remove a book from the reading list
   const removeBook = (title) => {
     setReadingList(readingList.filter((book) => book.title !== title));
   };
 
+  // Filter the list of books based on the search query
   const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -82,6 +95,8 @@ const App = () => {
             <img src={book.coverPhotoURL} alt={book.title} />
             <Typography variant="body1">{book.title}</Typography>
             <Typography variant="body2">{book.author}</Typography>
+            <Typography variant="body3">{book.readingList}</Typography>
+
             <IconButton onClick={() => addBook(book)} className="addButton">
               <AddIcon />
             </IconButton>
