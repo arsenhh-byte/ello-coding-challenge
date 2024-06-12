@@ -83,3 +83,46 @@ You can use this query to get the list of books to display in your frontend. You
 - Beautiful and responsive UI.
 
 
+
+My Implementation
+
+Features Implemented
+Search Bar: Allows users to search for books by title.
+Search Results: Displays the book title, author, and a button to add the book to the reading list.
+Reading List: Displays all the books that the teacher has added with an option to remove books from the list.
+Image Handling: Properly displays book cover images in both search results and reading list.
+How to Run the Project
+Clone the Repository
+
+bash
+Copy code
+git clone [your-repo-url]
+cd [your-repo-name]
+Setup the Backend
+
+bash
+Copy code
+cd src/backend
+npm install
+npm start
+The backend server will start at http://localhost:4000/.
+
+Setup the Frontend
+
+bash
+Copy code
+cd ../frontend
+npm install
+npm start
+The frontend development server will start at http://localhost:3000/.
+![image](https://github.com/arsenhh-byte/ello-coding-challenge/assets/77290710/feb948f0-c72c-4ea5-a491-b736baeaf638)
+![image](https://github.com/arsenhh-byte/ello-coding-challenge/assets/77290710/3d397350-fd03-43d6-9226-4635f97009fa)
+![image](https://github.com/arsenhh-byte/ello-coding-challenge/assets/77290710/ff2add26-c992-4a6a-883f-13ce8a096087)
+
+
+https://github.com/arsenhh-byte/ello-coding-challenge/assets/77290710/a256d783-b60c-493e-8e7e-2243746224e2
+
+
+
+
+
