@@ -84,13 +84,14 @@ You can use this query to get the list of books to display in your frontend. You
 
 
 
-My Implementation
+### My Implementation(Arsenhh-byte)
 
 Features Implemented
 Search Bar: Allows users to search for books by title.
 Search Results: Displays the book title, author, and a button to add the book to the reading list.
 Reading List: Displays all the books that the teacher has added with an option to remove books from the list.
 Image Handling: Properly displays book cover images in both search results and reading list.
+
 How to Run the Project
 Clone the Repository
 
@@ -98,6 +99,7 @@ bash
 Copy code
 git clone [your-repo-url]
 cd [your-repo-name]
+
 Setup the Backend
 
 bash
