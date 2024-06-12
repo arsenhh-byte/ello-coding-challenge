@@ -33,8 +33,15 @@ body {
   border-bottom: 1px solid #CFCFCF;
 }
 
-.searchResultAvatar {
+.searchResultImage {
+  width: 60px;
+  height: 60px;
   margin-right: 16px;
+  object-fit: cover;
+}
+
+.searchResultText {
+  flex: 1;
 }
 
 .image-grid {
@@ -47,18 +54,23 @@ body {
 .image-grid img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
+  max-width: 100%; /* Adjusted size */
+  max-height: 400px; /* Adjusted size */
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 
 .grid-item {
-  text-align: left;
+  text-align: center;
   background-color: #FFFFFF;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Change to column to stack image and text vertically */
+  align-items: center; /* Center align items */
   justify-content: space-between;
 }
 
@@ -97,8 +109,16 @@ body {
   border-bottom: 1px solid #CFCFCF;
 }
 
-.readingListAvatar {
+.readingListImage {
+  width: 60px;
+  height: 60px;
   margin-right: 16px;
+  object-fit: cover;
+}
+
+.readingListText {
+  flex: 1;
+  margin-right: 10px;
 }
 
 .MuiButtonBase-root {
